@@ -3,8 +3,12 @@ import heroImg from "../../assets/images/hero.jpg";
 import HeroFooter from "../../components/HeroFooter";
 import iceImg from "../../assets/images/cold.png";
 import leafImg from "../../assets/images/leaf.png";
+import { generateUUID } from "../../lib";
 
 const HomePage = () => {
+  const handleClick = () => {
+    generateUUID();
+  };
   return (
     <div className="w-full h-screen p-8 bg-white dark:bg-black font-body">
       <div className="w-full h-full flex justify-between gap-6">
@@ -31,7 +35,10 @@ const HomePage = () => {
               ipsum turpis. Donec euismod nibh non felis accumsan, vel
               pellentesque metus semper.
             </p>
-            <button className="px-5 py-2 text-center rounded-full bg-gradient-to-r from-cyan-600 to-cyan-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-200 transition-all ease-in text-white font-medium text-xl mt-6 w-48 h-14">
+            <button
+              className="px-5 py-2 text-center rounded-full bg-gradient-to-r from-cyan-600 to-cyan-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-200 transition ease-in text-white font-medium text-xl mt-6 w-48 h-14"
+              onClick={handleClick}
+            >
               Get Started
             </button>
           </div>
