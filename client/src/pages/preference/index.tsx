@@ -4,8 +4,6 @@ import SelectedCity from "../../components/SelectedCity";
 import Alert from "@mui/material/Alert";
 import CloseIcon from "@mui/icons-material/Close";
 
-// import CityCard from "../../components/CityCard";
-
 const PreferencePage = () => {
   const [selectedCities, setSelectedCities] = useState<string[]>([]);
   const [exceed, setExceed] = useState(false);
@@ -31,7 +29,10 @@ const PreferencePage = () => {
   return (
     <div className="container">
       {exceed && (
-        <Alert severity="error" className="mt-2 relative my-3">
+        <Alert
+          severity="error"
+          className="mt-2 my-3 sticky top-0 z-10 transition ease-in duration-150 animate-pulse"
+        >
           Limit Exceeded{" "}
           <CloseIcon
             onClick={handleErrorClose}
@@ -41,11 +42,11 @@ const PreferencePage = () => {
       )}
       <div className="py-20">
         <div className="flex flex-col justify-center items-center gap-4">
-          <h1 className="text-4xl font-main font-bold">
+          <h1 className="text-4xl font-main font-bold text-center">
             Please Select Atmost 4 Cities
           </h1>
 
-          <p className="text-gray-500">
+          <p className="text-gray-500 text-center">
             search cities in the search box or select and check the cities
             below.
           </p>

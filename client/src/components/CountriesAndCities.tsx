@@ -85,8 +85,8 @@ const CountriesAndCitiesForm = ({
 
   return (
     <div className="w-full mt-5">
-      <div className=" max-w-lg mx-auto flex flex-wrap gap-4">
-        <FormControl className="w-40" error={!notSetCountry}>
+      <div className=" max-w-lg mx-auto flex flex-wrap gap-4 sticky top-0 bg-white p-4 max-xsm:flex-col">
+        <FormControl className="xsm:w-40 max-xsm:w-full" error={!notSetCountry}>
           <InputLabel id="demo-simple-select-label" className="w-16 bg-white">
             Country
           </InputLabel>
@@ -134,7 +134,7 @@ const CountriesAndCitiesForm = ({
       </div>
       <div className="mt-10">
         {filteredData.length !== 0 ? (
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
             {filteredData.map((city, index) => {
               return (
                 <div
