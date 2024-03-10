@@ -2,7 +2,7 @@ module.exports = {
   GetWeather: async (req, res) => {
     try {
       const city = req.params.city;
-      console.log(city);
+      // console.log(city);
       const url = `${process.env.WEATHER_API}?key=${process.env.WEATHER_APIKEY}&q=${city}&days=1`;
       const response = await fetch(url);
       if (!response.ok) {

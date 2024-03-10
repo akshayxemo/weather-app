@@ -5,13 +5,14 @@ import iceImg from "../../assets/images/cold.png";
 import leafImg from "../../assets/images/leaf.png";
 import { generateUUID } from "../../lib";
 import axios from "axios";
-import { useAppDispatch } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { addCredential } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const token = useAppSelector((state) => state.auth.token);
   const handleClick = async () => {
     const id = generateUUID();
     const data = {
@@ -55,12 +56,23 @@ const HomePage = () => {
               ipsum turpis. Donec euismod nibh non felis accumsan, vel
               pellentesque metus semper.
             </p>
-            <button
-              className="px-5 py-2 text-center rounded-full bg-gradient-to-r from-cyan-600 to-cyan-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-200 transition ease-in text-white font-medium text-xl mt-6 w-48 h-14"
-              onClick={handleClick}
-            >
-              Get Started
-            </button>
+            {token == "" ? (
+              <button
+                className="px-5 py-2 text-center rounded-full bg-gradient-to-r from-cyan-600 to-cyan-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-200 transition ease-in text-white font-medium text-xl mt-6 w-48 h-14"
+                onClick={handleClick}
+              >
+                Get Started
+              </button>
+            ) : (
+              <button
+                className="px-5 py-2 text-center rounded-full bg-gradient-to-r from-cyan-600 to-cyan-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-200 transition ease-in text-white font-medium text-xl mt-6 w-48 h-14"
+                onClick={() => {
+                  navigate("/weather-report");
+                }}
+              >
+                Check Weather
+              </button>
+            )}
           </div>
 
           {/* Absolute images...................... */}
