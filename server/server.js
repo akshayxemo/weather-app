@@ -4,6 +4,7 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 const jwt = require("jsonwebtoken");
+app.use(express.json());
 
 // Import required modules
 const http = require("http").Server(app);
@@ -19,6 +20,8 @@ const io = socketIO(http, {
   },
 });
 app.set("socket", io);
+
+app.use(require("./api/route"));
 
 // listening code
 http.listen(port, () => {

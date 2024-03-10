@@ -4,10 +4,30 @@ import HeroFooter from "../../components/HeroFooter";
 import iceImg from "../../assets/images/cold.png";
 import leafImg from "../../assets/images/leaf.png";
 import { generateUUID } from "../../lib";
+import axios from "axios";
+import { useAppDispatch } from "../../redux/store";
+import { addCredential } from "../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const handleClick = () => {
-    generateUUID();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const handleClick = async () => {
+    const id = generateUUID();
+    const data = {
+      uuid: id,
+    };
+    console.log(data);
+    const respone = await axios.post(
+      `${import.meta.env.VITE_SERVER_URL}/credential`,
+      data
+    );
+
+    const token = respone.data.token;
+    console.log(id);
+    console.log(token);
+    dispatch(addCredential({ id: id, token: token }));
+    navigate("/preference");
   };
   return (
     <div className="w-full h-screen p-8 bg-white dark:bg-black font-body">
